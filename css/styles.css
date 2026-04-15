@@ -1,0 +1,117 @@
+:root {
+    --primary: #4f46e5;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --success: #10b981;
+    --danger: #ef4444;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: #f1f5f9; 
+    color: var(--dark); 
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* NAVBAR */
+.navbar { background: white; padding: 1rem 0; border-bottom: 1px solid #e2e8f0; margin-bottom: 30px; }
+.navbar .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-weight: 800; font-size: 1.5rem; }
+.logo span { color: var(--primary); }
+
+/* CARDS Y FORMULARIO */
+.admin-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+.card { background: white; padding: 25px; border-radius: 12px; shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 15px; }
+label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+input, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; }
+
+/* BOTONES */
+.btn-primary { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 700; }
+.btn-secondary { background: var(--dark); color: white; padding: 10px; border-radius: 8px; cursor: pointer; border: none; }
+
+/* AGENDA GRID */
+.agenda-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.event-card { background: white; border-left: 5px solid var(--primary); padding: 20px; border-radius: 8px; position: relative; }
+.event-date { font-weight: 800; color: var(--primary); font-size: 0.85rem; }
+.event-actions { margin-top: 15px; display: flex; gap: 10px; }
+.btn-edit { color: var(--primary); background: none; border: 1px solid var(--primary); padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+.btn-delete { color: var(--danger); background: none; border: 1px solid var(--danger); padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .admin-section { grid-template-columns: 1fr; }
+    .agenda-grid { grid-template-columns: 1fr; }
+}
+
+/* IMPRESIÓN PDF */
+.print-only { display: none; }
+/* =========================================
+   ESTILOS DE IMPRESIÓN PROFESIONAL (PDF)
+   ========================================= */
+@media print {
+    /* Ocultar todo lo que no sea la agenda */
+    .no-print, .btn-print, .admin-section, .navbar, .event-actions {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        font-size: 12pt;
+    }
+
+    .container {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    /* Títulos en negrita, cuerpo normal */
+    h1, h2, h3, th {
+        font-weight: bold;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    p, td {
+        font-weight: normal;
+        color: #333;
+    }
+
+    /* Diseño de Tabla de Agenda */
+    .print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .print-table th {
+        background-color: #f2f2f2 !important;
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        -webkit-print-color-adjust: exact; /* Para que el gris salga en el PDF */
+    }
+
+    .print-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        vertical-align: top;
+    }
+
+    .footer-print {
+        margin-top: 30px;
+        font-size: 10pt;
+        text-align: center;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+}

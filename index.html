@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAgenda | Gestión de Eventos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar no-print">
+        <div class="container">
+            <h1 class="logo">Ñande<span>Agenda</span></h1>
+            <button class="btn-print" onclick="exportarPDF()">🖨️ Exportar Agenda</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="admin-section no-print">
+            <div class="card">
+                <h2 id="form-title">Nuevo Evento</h2>
+                <form id="evento-form">
+                    <input type="hidden" id="edit-id">
+                    <div class="form-group">
+                        <label>Título del Evento</label>
+                        <input type="text" id="titulo" placeholder="Ej: Reunión de Tesis" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="descripcion" rows="3" placeholder="Detalles del evento..." required></textarea>
+                    </div>
+                    <button type="submit" id="btn-submit" class="btn-primary">Guardar Evento</button>
+                    <button type="button" id="btn-cancel" class="btn-cancel" style="display:none;">Cancelar Edición</button>
+                </form>
+            </div>
+
+            <div class="card filter-card">
+                <h2>Filtrar por Fechas</h2>
+                <div class="filter-group">
+                    <input type="date" id="filtro-desde">
+                    <span>hasta</span>
+                    <input type="date" id="filtro-hasta">
+                </div>
+                <div class="filter-actions">
+                    <button onclick="aplicarFiltros()" class="btn-secondary">Aplicar Filtro</button>
+                    <button onclick="limpiarFiltros()" class="btn-link">Limpiar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="agenda-section">
+            <h2 class="section-title">Eventos Programados</h2>
+            <div id="lista-eventos" class="agenda-grid">
+                </div>
+        </section>
+    </main>
+
+    <div id="ticket-print" class="print-only">
+        <h1>Agenda Diaria - SmartAgenda</h1>
+        <hr>
+        <div id="print-content"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
